@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Manager - Auth</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2 id="form-title">Login</h2>
+    
+    <form id="auth-form">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="email" id="email" placeholder="Email (for Register)" style="display: none;" />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="toggle-text">Don't have an account? <span id="toggle-link">Register here</span></p>
+
+    <div id="user-info" style="display: none;"></div>
+
+     <!-- Inside index.html, just after user info div -->
+<div id="task-manager" style="display: none;">
+    <h3>Your Tasks</h3>
+  
+    <div id="task-controls">
+      <input type="text" id="new-task-name" placeholder="New Task Name" />
+      <button onclick="createTask()">Create Task</button>
+      <select id="task-filter" onchange="loadTasks()">
+        <option value="">All</option>
+        <option value="running">Running</option>
+        <option value="completed">Completed</option>
+        <option value="failed">Failed</option>
+      </select>
+    </div>
+  
+    <ul id="task-list"></ul>
+  </div>
+  
+  <button id="logout-btn" style="display:none;">Logout</button>
+  </div>
+
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>

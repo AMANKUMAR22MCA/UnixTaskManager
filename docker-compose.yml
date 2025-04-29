@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: unix-postgres-container
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_DB: unix_app_task
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: unix-backend-container
+    ports:
+      - "8000:8000"
+    links:
+      - db:db
+    environment:
+      - DJANGO_ALLOWED_HOSTS=backend-container, localhost, host.docker.internal,34.100.160.93
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=unix_app_task
+      - DB_USER=admin
+      - DB_PASSWORD=admin1234
+    depends_on:
+      - db
+    command: >
+      sh -c "
+        python manage.py migrate &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+
+  frontend:
+    build: ./frontend
+    container_name: unix-frontend-container
+    ports:
+      - "5600:80"  # Expose frontend on port 5600
