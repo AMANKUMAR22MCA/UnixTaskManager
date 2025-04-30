@@ -2,6 +2,8 @@
 
 A Django + sqlite backend with a custom HTML/CSS/JS frontend that replicates Unix-style task management via a clean web interface. The system supports task lifecycle states, user authentication via JWT, and simulates concurrency in task handling.
 
+# Deployed on Google Cloud : http://34.100.160.93:5600/index.html
+
 ## 🚀 Features
 
 - ✅ **User Authentication**
